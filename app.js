@@ -1,6 +1,7 @@
 // DOM Element Selectors
 const commitBtn = document.getElementById('commitBtn');
 const viewBtn = document.getElementById('viewBtn');
+const clearBtn = document.getElementById('clearBtn');
 const userForm = document.getElementById('userForm');
 const errorSummary = document.getElementById('errorSummary');
 const tableContainer = document.getElementById('tableContainer');
@@ -8,6 +9,7 @@ const tableContainer = document.getElementById('tableContainer');
 // Register Event Listeners
 commitBtn.addEventListener('click', handleCommit);
 viewBtn.addEventListener('click', handleViewEntries);
+clearBtn.addEventListener('click', handleClearData);
 
 /**
  * Handles form validation, data persistence, and JSON simulation/download logic.
@@ -69,7 +71,7 @@ function handleCommit() {
     // Write back down to browser client memory
     localStorage.setItem('simulatedJsonFile', JSON.stringify(dynamicJsonFile));
 
-    // Optional: Trigger a browser-driven physical JSON download to your computer
+    // Trigger a browser-driven physical JSON download to your computer
     triggerJsonDownload(dynamicJsonFile);
 
     alert('Data processed and appended successfully!');
@@ -125,6 +127,24 @@ function handleViewEntries() {
 
     table.appendChild(tbody);
     tableContainer.appendChild(table);
+}
+
+/**
+ * Utility function to wipe all stored entries and clear active DOM table views.
+ */
+function handleClearData() {
+    if (confirm('Are you sure you want to permanently delete all submitted entries?')) {
+        // Remove item from localStorage simulation layer
+        localStorage.removeItem('simulatedJsonFile');
+        
+        // Clear active DOM layout components 
+        tableContainer.innerHTML = '';
+        errorSummary.style.display = 'none';
+        errorSummary.innerHTML = '';
+        userForm.reset();
+        
+        alert('All entries have been cleared successfully.');
+    }
 }
 
 /**
