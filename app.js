@@ -41,7 +41,7 @@ function handleCommit() {
     }
 
     const entryData = {
-        id: Date.now().toString(), // Add unique string id identifier for explicit filtering updates
+        id: Date.now().toString(),
         fullName: document.getElementById('fullName').value.trim(),
         email: emailField.value.trim(),
         phone: phoneField.value.trim(),
