@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Data Viewer - Dracula Theme</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h2>Stored Database Entries (Dracula UI Route)</h2>
+
+    <div class="btn-group">
+        <button type="button" id="backBtn" onclick="window.location.href='index.html'">← Back to Form</button>
+    </div>
+
+    <!-- Live Filter Input Box -->
+    <div class="form-group">
+        <label for="searchInput">Live Search Filter</label>
+        <input type="text" id="searchInput" placeholder="Search by name, email substring, or phone number...">
+    </div>
+
+    <!-- Data Render Target -->
+    <div id="tableContainer"></div>
+
+    <!-- SQL Command Sandbox Display -->
+    <div class="sql-box">
+        <h3>Generated Pseudo-SQL Command</h3>
+        <code id="sqlDisplay">SELECT * FROM form_entries;</code>
+    </div>
+
+    <script src="entries.js"></script>
+</body>
+</html>
