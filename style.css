@@ -116,10 +116,38 @@ th, td {
 th {
     background-color: #383a59;
     color: var(--pink);
+    cursor: pointer;
+    user-select: none;
+}
+
+th:hover {
+    background-color: #44475a;
+    color: var(--cyan);
 }
 
 tr:hover {
     background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Pagination View Controls Styles */
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 20px;
+}
+
+.pagination-btn {
+    padding: 6px 12px;
+    background-color: var(--current-line);
+    color: var(--foreground);
+    border-radius: 4px;
+}
+
+.pagination-btn.active {
+    background-color: var(--pink);
+    color: var(--background);
 }
 
 /* SQL Monitor Style Rules */
@@ -141,5 +169,6 @@ code {
     color: var(--yellow);
     font-family: 'Courier New', Courier, monospace;
     font-size: 1.05rem;
+    white-space: pre-wrap;
     word-break: break-all;
 }
