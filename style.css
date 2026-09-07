@@ -1,0 +1,133 @@
+/* Dracula Theme Color Palette Variables */
+:root {
+    --background: #282a36;
+    --current-line: #44475a;
+    --foreground: #f8f8f2;
+    --comment: #6272a4;
+    --cyan: #8be9fd;
+    --green: #50fa7b;
+    --orange: #ffb86c;
+    --pink: #ff79c6;
+    --purple: #bd93f9;
+    --red: #ff5555;
+    --yellow: #f1fa8c;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 30px;
+    max-width: 800px;
+    background-color: var(--background);
+    color: var(--foreground);
+}
+
+h2 {
+    color: var(--purple);
+    border-bottom: 2px solid var(--current-line);
+    padding-bottom: 10px;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: bold;
+    color: var(--cyan);
+}
+
+input[type="text"], input[type="email"], textarea {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 2px solid var(--current-line);
+    border-radius: 6px;
+    background-color: var(--current-line);
+    color: var(--foreground);
+    font-size: 1rem;
+}
+
+input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
+    outline: none;
+    border-color: var(--pink);
+}
+
+/* Action Buttons Group layout */
+.btn-group {
+    margin-top: 20px;
+    margin-bottom: 25px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+button {
+    padding: 10px 18px;
+    cursor: pointer;
+    border: none;
+    border-radius: 6px;
+    color: #282a36;
+    font-weight: bold;
+    font-size: 0.95rem;
+    transition: transform 0.1s ease, filter 0.2s ease;
+}
+
+button:hover {
+    filter: brightness(1.2);
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+#commitBtn { background-color: var(--purple); color: var(--foreground); }
+#viewBtn { background-color: var(--green); }
+#downloadBtn { background-color: var(--cyan); }
+#clearBtn { background-color: var(--red); color: var(--foreground); }
+
+/* Row Specific Utility Action Elements */
+.action-btn {
+    padding: 4px 10px;
+    font-size: 0.85rem;
+    margin-right: 5px;
+}
+.edit-btn { background-color: var(--yellow); color: #282a36; }
+.delete-btn { background-color: var(--red); color: var(--foreground); }
+
+.error-summary {
+    color: var(--foreground);
+    background-color: rgba(255, 85, 85, 0.2);
+    border: 2px solid var(--red);
+    padding: 12px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    display: none;
+    line-height: 1.5;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 25px;
+    background-color: var(--current-line);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--background);
+}
+
+th {
+    background-color: #383a59;
+    color: var(--pink);
+    font-weight: bold;
+}
+
+tr:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
