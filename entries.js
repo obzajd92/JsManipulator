@@ -257,5 +257,5 @@ function renderDomainChart(data) {
         rect.setAttribute("width", computedBarWidth || 5);
         rect.setAttribute("height", barHeight);
 rect.setAttribute("fill", "#ff79c6");
-/* Dracula Pink*/rect.setAttribute("rx", "4");svg.appendChild(rect);// 3. Append quantity metrics valuesconst textCount = document.createElementNS(svgNamespace, "text");textCount.setAttribute("x", 135 + computedBarWidth + 8);textCount.setAttribute("y", yPosition + 22);textCount.setAttribute("fill", "#50fa7b"); // Dracula GreentextCount.style.fontFamily = "sans-serif";textCount.style.fontSize = "12px";textCount.style.fontWeight = "bold";textCount.textContent = (${count});svg.appendChild(textCount);});
+/* Dracula Pink*/rect.setAttribute("rx", "4");svg.appendChild(rect);/* 3. Append quantity metrics values*/const textCount = document.createElementNS(svgNamespace, "text");textCount.setAttribute("x", 135 + computedBarWidth + 8);textCount.setAttribute("y", yPosition + 22);textCount.setAttribute("fill", "#50fa7b"); // Dracula GreentextCount.style.fontFamily = "sans-serif";textCount.style.fontSize = "12px";textCount.style.fontWeight = "bold";textCount.textContent = (${count});svg.appendChild(textCount);});
 chartContainer.appendChild(svg);}
