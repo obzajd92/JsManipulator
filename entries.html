@@ -3,44 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Application - Dracula Theme</title>
+    <title>Form Data Viewer - Dracula Theme</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <h2>User Registration (Dracula UI)</h2>
-    
-    <div id="errorSummary" class="error-summary"></div>
+    <h2>Stored Database Entries (Dracula UI Route)</h2>
 
-    <form id="userForm" novalidate>
-        <div class="form-group">
-            <label for="fullName">Full Name</label>
-            <input type="text" id="fullName" class="validate-empty">
+    <div class="btn-group">
+        <button type="button" id="backBtn" onclick="window.location.href='index.html'">← Back to Form</button>
+        <button type="button" id="csvBtn">Export CSV</button>
+    </div>
+
+    <!-- Layout controls for searching and changing items per page -->
+    <div class="controls-row">
+        <div class="form-group flex-grow">
+            <label for="searchInput">Live Search Filter</label>
+            <input type="text" id="searchInput" placeholder="Search by name, email substring, or phone number...">
         </div>
-
-        <div class="form-group">
-            <label for="email">Email Address</label>
-            <input type="email" id="email" class="validate-empty">
+        
+        <div class="form-group pagination-selector-group">
+            <label for="perPageSelect">Items Per Page</label>
+            <select id="perPageSelect">
+                <option value="5" selected>5</option>
+                <option value="10">10</option>
+                <option value="25">25</option>
+            </select>
         </div>
+    </div>
 
-        <div class="form-group">
-            <label for="phone">Phone Number (10 digits)</label>
-            <input type="text" id="phone" class="validate-empty">
-        </div>
+    <!-- Data Render Target -->
+    <div id="tableContainer"></div>
 
-        <div class="form-group">
-            <label for="comments">Comments</label>
-            <textarea id="comments" class="validate-empty" rows="4"></textarea>
-        </div>
+    <!-- Pagination Controller View -->
+    <div class="pagination-container" id="paginationControls"></div>
 
-        <div class="btn-group">
-            <button type="button" id="commitBtn">Commit</button>
-            <button type="button" id="viewBtn" onclick="window.location.href='entries.html'">View Entries</button>
-            <button type="button" id="downloadBtn">Download JSON</button>
-            <button type="button" id="clearBtn">Clear Data</button>
-        </div>
-    </form>
+    <!-- Data Visualization Dashboard Wrapper -->
+    <div class="chart-box">
+        <h3>Email Domain Breakdown</h3>
+        <div id="chartContainer"></div>
+    </div>
 
-    <script src="app.js"></script>
+    <!-- SQL Command Sandbox Display -->
+    <div class="sql-box">
+        <h3>Generated Pseudo-SQL Command</h3>
+        <code id="sqlDisplay">SELECT * FROM form_entries;</code>
+    </div>
+
+    <script src="entries.js"></script>
 </body>
 </html>
