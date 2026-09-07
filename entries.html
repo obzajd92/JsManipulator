@@ -1,100 +1,37 @@
-const tableContainer = document.getElementById('tableContainer');
-const searchInput = document.getElementById('searchInput');
-const sqlDisplay = document.getElementById('sqlDisplay');
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Data Viewer - Dracula Theme</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-// Bind keyup monitoring events to drive live rendering loops
-searchInput.addEventListener('input', renderFilteredEntries);
+    <h2>Stored Database Entries (Dracula UI Route)</h2>
 
-// Fire off a standard table initialization loop during load boundaries
-window.addEventListener('DOMContentLoaded', renderFilteredEntries);
+    <div class="btn-group">
+        <button type="button" id="backBtn" onclick="window.location.href='index.html'">← Back to Form</button>
+    </div>
 
-/**
- * Grabs the database file array and handles filtering logic + SQL generation.
- */
-function renderFilteredEntries() {
-    tableContainer.innerHTML = '';
-    const dataset = JSON.parse(localStorage.getItem('simulatedJsonFile')) || [];
-    const queryTerm = searchInput.value.trim().toLowerCase();
+    <!-- Live Filter Input Box -->
+    <div class="form-group">
+        <label for="searchInput">Live Search Filter</label>
+        <input type="text" id="searchInput" placeholder="Search by name, email substring, or phone number...">
+    </div>
 
-    if (dataset.length === 0) {
-        tableContainer.innerText = 'No records discovered inside the database.';
-        sqlDisplay.innerText = 'SELECT * FROM form_entries; -- (No records inside data pool)';
-        return;
-    }
+    <!-- Data Render Target -->
+    <div id="tableContainer"></div>
 
-    // 1. Array filtration mapping sequence matching first name, last name, email string or phone values
-    const filteredResults = dataset.filter(item => {
-        return item.fullName.toLowerCase().includes(queryTerm) ||
-               item.email.toLowerCase().includes(queryTerm) ||
-               item.phone.includes(queryTerm);
-    });
+    <!-- Pagination Controller View -->
+    <div class="pagination-container" id="paginationControls"></div>
 
-    // 2. Transpile active filter variables to map explicit readable standard SQL queries
-    if (queryTerm === '') {
-        sqlDisplay.innerText = 'SELECT * FROM form_entries;';
-    } else {
-        // Handle escaping character variations cleanly to reflect real statements safely
-        const safeQuery = queryTerm.replace(/'/g, "''");
-        sqlDisplay.innerText = `SELECT * FROM form_entries \nWHERE LOWER(fullName) LIKE '%${safeQuery}%' \n   OR LOWER(email) LIKE '%${safeQuery}%' \n   OR phone LIKE '%${safeQuery}%';`;
-    }
+    <!-- SQL Command Sandbox Display -->
+    <div class="sql-box">
+        <h3>Generated Pseudo-SQL Command</h3>
+        <code id="sqlDisplay">SELECT * FROM form_entries;</code>
+    </div>
 
-    if (filteredResults.length === 0) {
-        tableContainer.innerText = 'No records matched your search parameters.';
-        return;
-    }
-
-    // 3. Build HTML Structure elements
-    const table = document.createElement('table');
-    const thead = document.createElement('thead');
-    const tbody = document.createElement('tbody');
-
-    const columnTitles = ['Full Name', 'Email Address', 'Phone Number', 'Comments', 'Actions'];
-    const trHeader = document.createElement('tr');
-    
-    columnTitles.forEach(titleText => {
-        const th = document.createElement('th');
-        th.innerText = titleText;
-        trHeader.appendChild(th);
-    });
-    thead.appendChild(trHeader);
-    table.appendChild(thead);
-
-    filteredResults.forEach(rowItem => {
-        const trRow = document.createElement('tr');
-
-        const dataKeys = ['fullName', 'email', 'phone', 'comments'];
-        dataKeys.forEach(key => {
-            const td = document.createElement('td');
-            td.innerText = rowItem[key];
-            trRow.appendChild(td);
-        });
-
-        const actionTd = document.createElement('td');
-        const deleteBtn = document.createElement('button');
-        deleteBtn.type = 'button';
-        deleteBtn.className = 'action-btn delete-btn';
-        deleteBtn.innerText = 'Delete';
-        
-        // Pass item tracking references explicitly to look up targets safely from database indexes
-        deleteBtn.addEventListener('click', () => deleteTargetEntry(rowItem.id));
-        actionTd.appendChild(deleteBtn);
-        trRow.appendChild(actionTd);
-
-        tbody.appendChild(trRow);
-    });
-
-    table.appendChild(tbody);
-    tableContainer.appendChild(table);
-}
-
-/**
- * Matches object string indexes to run safe row removal on persistent storage file data.
- */
-function deleteTargetEntry(uniqueId) {
-    if (confirm('Are you sure you want to delete this row entry?')) {
-        let dataset = JSON.parse(localStorage.getItem('simulatedJsonFile')) || [];
-        dataset = dataset.filter(item => item.id !== uniqueId);
-        localStorage.setItem('simulatedJsonFile', JSON.stringify(dataset));
-        renderFilteredEntries(); // Instantly update view tracking frames
-    }
-}
+    <script src="entries.js"></script>
+</body>
+</html>
