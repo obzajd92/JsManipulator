@@ -3,21 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Application - Dracula Theme DOM Manipulation</title>
-    <!-- Link to the separate CSS file -->
+    <title>Form Application - Dracula Theme</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <h2>User Registration & Data Management (Dracula UI)</h2>
+    <h2>User Registration (Dracula UI)</h2>
     
-    <!-- Error summary anchor block -->
     <div id="errorSummary" class="error-summary"></div>
 
     <form id="userForm" novalidate>
-        <!-- Keep track of currently edited index row state -->
-        <input type="hidden" id="editIndex" value="-1">
-
         <div class="form-group">
             <label for="fullName">Full Name</label>
             <input type="text" id="fullName" class="validate-empty">
@@ -40,16 +35,13 @@
 
         <div class="btn-group">
             <button type="button" id="commitBtn">Commit</button>
-            <button type="button" id="viewBtn">View Entries</button>
+            <!-- Navigates user to the entries page route -->
+            <button type="button" id="viewBtn" onclick="window.location.href='entries.html'">View Entries</button>
             <button type="button" id="downloadBtn">Download JSON</button>
             <button type="button" id="clearBtn">Clear Data</button>
         </div>
     </form>
 
-    <!-- Target container where the dynamic table will be rendered -->
-    <div id="tableContainer"></div>
-
-    <!-- Link to the external JavaScript file -->
     <script src="app.js"></script>
 </body>
 </html>
